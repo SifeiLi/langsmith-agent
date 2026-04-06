@@ -1,6 +1,12 @@
-from langchain_core.language_models import FakeListChatModel
-from langgraph.prebuilt import create_react_agent
+from langgraph.func import entrypoint
 
-model = FakeListChatModel(responses=["Hello! I'm a test agent running on LangSmith."])
-
-workflow = create_react_agent(model=model, tools=[])
+@entrypoint()
+def workflow(inputs):
+    messages = inputs.get("messages", [])
+    last_message = messages[-1]["content"] if messages else ""
+    return {
+        "messages": [
+            *messages,
+            {"role": "assistant", "content": f"Echo: {last_message}"}
+        ]
+    }
