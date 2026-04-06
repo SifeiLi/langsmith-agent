@@ -1,2 +1,2 @@
-langgraph
+langgraph==1.1.5
 langchain-core
