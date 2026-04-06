@@ -1,2 +1,2 @@
 langgraph
-langchain-aws
+langchain-openai
